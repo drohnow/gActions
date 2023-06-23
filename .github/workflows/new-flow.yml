@@ -42,13 +42,11 @@ jobs:
         replicated channel rm $(replicated channel  ls | grep $BRANCH_NAME | awk '{ print $1 }')
 
         if [ $? -ne 0 ]; then
-        echo "$BRANCH_NAME channel does not exist in Replicated Vendor Portal in REPLICATED_APP slug"
+        echo ""
+        echo "Results: $BRANCH_NAME channel does not exist in Replicated Vendor Portal in REPLICATED_APP slug"
         else
         echo ""
-        echo ""
-        echo "+++++++++++++++++++++++++++++++++++++++++++"
-        echo "$BRANCH_NAME channel successfully archived"
-        echo "+++++++++++++++++++++++++++++++++++++++++++"
+        echo "Results: $BRANCH_NAME channel successfully archived"
 
         fi
         
