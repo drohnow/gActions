@@ -45,6 +45,7 @@ jobs:
           replicated channel rm "test9"
         fi
 
+        replicated channel ls
 
 
 
