@@ -43,10 +43,7 @@ jobs:
         BRANCH_NAME="${{ steps.get_branch.outputs.branch }}"
         echo $BRANCH_NAME
         
-        if [[ $BRANCH_NAME == "test14" ]]; then 
-          replicated channel rm 2RcfQ8fa4QEPvVI6VAzNCFL3Pdj
-        fi
-
+        replicated channel rm $(replicated channel  ls | grep $BRANCH_NAME | awk '{ print $1 }')
         replicated channel ls
 
 
