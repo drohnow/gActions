@@ -43,8 +43,8 @@ jobs:
         BRANCH_NAME="${{ steps.get_branch.outputs.branch }}"
         echo $BRANCH_NAME
         
-        if [[ $BRANCH_NAME == "test13" ]]; then 
-          replicated channel rm "test13"
+        if [[ $BRANCH_NAME == "test14" ]]; then 
+          replicated channel rm 2RcfQ8fa4QEPvVI6VAzNCFL3Pdj
         fi
 
         replicated channel ls
