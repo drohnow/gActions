@@ -40,6 +40,9 @@ jobs:
         mv replicated /usr/local/bin/replicated
         replicated --help
         replicated channel ls
+        if [[ echo ${{ steps.get_branch.outputs.branch }} == "test8" ]]; then 
+          replicated channel rm "test8"
+        fi
 
 
 
