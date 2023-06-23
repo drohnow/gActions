@@ -23,6 +23,7 @@ jobs:
     - name: archive-channel
       shell: bash
       run: |
+        # Download / install replicated cli
         curl -s https://api.github.com/repos/replicatedhq/replicated/releases/latest \
         | grep "browser_download_url.*linux_amd64.tar.gz" \
         | cut -d : -f 2,3 \
@@ -30,21 +31,24 @@ jobs:
         | wget -O replicated.tar.gz -qi -
         tar xf replicated.tar.gz replicated && rm replicated.tar.gz
         mv replicated /usr/local/bin/replicated
-        replicated --help
-        replicated channel ls
+
+        # Assign branch name to variable
         BRANCH_NAME="${{ steps.get_branch.outputs.branch }}"
-        echo $BRANCH_NAME
+        echo "Branch name is: $BRANCH_NAME"
         
+        # Archive channel
         replicated channel rm $(replicated channel  ls | grep $BRANCH_NAME | awk '{ print $1 }')
 
         if [ $? -ne 0 ]; then
         echo "$BRANCH_NAME channel does not exist in Replicated Vendor Portal in REPLICATED_APP slug"
         else
-        echo "BRANCH_NAME" channel successfully archived
+        echo 
+        echo "+++++++++++++++++++++++++++++++++++++++++++"
+        echo "$BRANCH_NAME" channel successfully archived"
+        echo "+++++++++++++++++++++++++++++++++++++++++++"
+        echo 
         fi
         
-        replicated channel ls
-
 
 
 
