@@ -1,4 +1,4 @@
-name: first-workflow
+name: printenv
 on: workflow_dispatch
 jobs:
   first-job:
