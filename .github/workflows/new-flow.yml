@@ -35,11 +35,9 @@ jobs:
         # Assign branch name to variable
         BRANCH_NAME="${{ steps.get_branch.outputs.branch }}"
         echo "Branch name is: $BRANCH_NAME"
-        CHANNEL_ID=`replicated channel  ls | grep $BRANCH_NAME | awk '{ print $1 }'`
-        echo "Channel_ID is: $CHANNEL_ID"
         
         # Archive channel
-        CHANNEL_NAME=`replicated channel  ls | grep $BRANCH_NAME`
+        CHANNEL_NAME=`replicated channel ls | grep $BRANCH_NAME`
        
         if [ -n "$CHANNEL_NAME" ]; then
               replicated channel rm $(replicated channel  ls | grep $BRANCH_NAME | awk '{ print $1 }')
