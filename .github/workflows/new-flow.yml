@@ -28,7 +28,7 @@ jobs:
         | wget -O replicated.tar.gz -qi -
         tar xf replicated.tar.gz replicated && rm replicated.tar.gz
         mv replicated /usr/local/bin/replicated
-        replicated channel ls
+        replicated --help
 
 
 
