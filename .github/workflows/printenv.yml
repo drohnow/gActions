@@ -6,5 +6,8 @@ jobs:
     steps:
       - name: printenv
         run: printenv      
-      
+      - name: branch
+        run: echo $branch
+      - name: print goodbye
+        run: echo "bye..."
     

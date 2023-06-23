@@ -1,0 +1,24 @@
+name: archive-channel
+
+on:
+  pull_request:
+    types:
+      - closed
+
+jobs:
+  delete-channel:
+    runs-on: ubuntu-latest
+    steps:
+
+    - name: Get branch name
+      shell: bash
+      run: echo "branch=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}" >> $GITHUB_OUTPUT
+      id: get_branch
+
+    - name: echo branch
+      run: echo ${{ steps.get_branch.outputs.branch }}
+
+
+
+
+
