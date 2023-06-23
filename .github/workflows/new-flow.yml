@@ -41,8 +41,10 @@ jobs:
         replicated --help
         replicated channel ls
         BRANCH_NAME="${{ steps.get_branch.outputs.branch }}"
-        if [[ BRANCH_NAME == "test12" ]]; then 
-          replicated channel rm "test12"
+        echo $BRANCH_NAME
+        
+        if [[ $BRANCH_NAME == "test13" ]]; then 
+          replicated channel rm "test13"
         fi
 
         replicated channel ls
