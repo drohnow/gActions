@@ -39,15 +39,20 @@ jobs:
         echo "Channel_ID is: $CHANNEL_ID"
         
         # Archive channel
+        CHANNEL_NAME=`replicated channel  ls | grep $BRANCH_NAME`
+       
+        if [ -z "$CHANNEL_NAME" ]; then
         replicated channel rm $(replicated channel  ls | grep $BRANCH_NAME | awk '{ print $1 }')
-
-        if [ $? -ne 0 ]; then
-        echo ""
-        echo "Results: $BRANCH_NAME channel does not exist in Replicated Vendor Portal in REPLICATED_APP slug"
+          if [ $? -ne 0 ]; then
+          echo ""
+          echo "Results: Something went wrong; $CHANNEL_NAME exists but was not archived"
+          else
+          echo ""
+          echo "Results: $BRANCH_NAME channel successfully archived"
+          fi
         else
         echo ""
-        echo "Results: $BRANCH_NAME channel successfully archived"
-
+        echo "Results: $BRANCH_NAME channel does not exist in Replicated Vendor Portal in REPLICATED_APP slug"
         fi
         
 
