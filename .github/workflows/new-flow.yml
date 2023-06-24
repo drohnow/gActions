@@ -40,11 +40,12 @@ jobs:
         # Archive channel
         CHANNEL_ID=`replicated channel ls | grep $BRANCH_NAME | awk '{ print $1 }'`
         echo "Channel_ID is: $CHANNEL_ID"
-        
+
         CHANNEL_NAME=`replicated channel ls | grep $BRANCH_NAME | awk '{ print $2 }'`
-        echo "Channel_Name is: $CHANNEL_NAME"
+        
        
         if [ -n "$CHANNEL_NAME" ]; then
+              echo "Channel $CHANNEL_NAME exists in vendor portal app slug"
               replicated channel rm $CHANNEL_ID
             if [ $? -ne 0 ]; then
               echo ""
