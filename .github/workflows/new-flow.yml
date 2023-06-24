@@ -40,7 +40,7 @@ jobs:
         echo "Channel_ID is: $CHANNEL_ID"
         
         # Archive channel
-        CHANNEL_NAME=`replicated channel  ls | grep $BRANCH_NAME`
+        CHANNEL_NAME=`replicated channel  ls | grep $BRANCH_NAME | awk '{ print $2 }'`
        
         if [ -n "$CHANNEL_NAME" ]; then
               replicated channel rm $(replicated channel  ls | grep $BRANCH_NAME | awk '{ print $2 }')
