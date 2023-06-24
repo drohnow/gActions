@@ -33,19 +33,17 @@ jobs:
         tar xf replicated.tar.gz replicated && rm replicated.tar.gz
         mv replicated /usr/local/bin/replicated
 
-        # Assign branch name to variable
+        # set variables
         BRANCH_NAME="${{ steps.get_branch.outputs.branch }}"
         echo "Branch name is: $BRANCH_NAME"
-        
-        # Archive channel
-        CHANNEL_ID=`replicated channel ls | grep $BRANCH_NAME | awk '{ print $1 }'`
-        echo "Channel_ID is: $CHANNEL_ID"
-
         CHANNEL_NAME=`replicated channel ls | grep $BRANCH_NAME | awk '{ print $2 }'`
-        
-       
+        CHANNEL_ID=`replicated channel ls | grep $BRANCH_NAME | awk '{ print $1 }'`
+
+        # Archive channel
         if [ -n "$CHANNEL_NAME" ]; then
               echo "Channel $CHANNEL_NAME exists in vendor portal app slug"
+              echo "Channel_ID is: $CHANNEL_ID"
+
               replicated channel rm $CHANNEL_ID
             if [ $? -ne 0 ]; then
               echo ""
