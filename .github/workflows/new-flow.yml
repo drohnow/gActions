@@ -37,9 +37,9 @@ jobs:
         echo "Branch name is: $BRANCH_NAME"
         
         # Archive channel
-        #CHANNEL_NAME=`replicated channel ls | grep $BRANCH_NAME`
+        CHANNEL_NAME=`replicated channel ls | grep $BRANCH_NAME` 2> /dev/null
        
-        if [ -n replicated channel ls | grep $BRANCH_NAME ]; then
+        if [ -n "$CHANNEL_NAME" ]; then
               replicated channel rm $(replicated channel  ls | grep $BRANCH_NAME | awk '{ print $1 }')
             if [ $? -ne 0 ]; then
               echo ""
