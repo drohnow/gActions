@@ -31,7 +31,7 @@ jobs:
         | tr -d \" \
         | wget -O replicated.tar.gz -qi -
         tar xf replicated.tar.gz replicated && rm replicated.tar.gz
-        mv replicated /usr/local/bin/replicated
+        #mv replicated /usr/local/bin/replicated
 
         # Assign branch name to variable
         BRANCH_NAME="${{ steps.get_branch.outputs.branch }}"
@@ -53,7 +53,7 @@ jobs:
             fi
         else
           echo ""
-          echo "Results: $BRANCH_NAME channel does not exist in Replicated Vendor Portal in app slug"
+          echo "Results: $BRANCH_NAME channel does not exist in Replicated Vendor Portal app slug"
         fi
 
 
