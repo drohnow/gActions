@@ -36,7 +36,7 @@ jobs:
         # Assign branch name to variable
         BRANCH_NAME="${{ steps.get_branch.outputs.branch }}"
         echo "Branch name is: $BRANCH_NAME"
-        #CHANNEL_ID=`replicated channel  ls | grep $BRANCH_NAME | awk '{ print $1 }'`
+        CHANNEL_ID=`replicated channel  ls | grep $BRANCH_NAME | awk '{ print $1 }'`
         echo "Channel_ID is: $CHANNEL_ID"
         
         # Archive channel
@@ -53,7 +53,7 @@ jobs:
             fi
         else
           echo ""
-          echo "Results: $BRANCH_NAME channel does not exist in Replicated Vendor Portal in $REPLICATED_APP slug"
+          echo "Results: $BRANCH_NAME channel does not exist in Replicated Vendor Portal in app slug"
         fi
 
 
