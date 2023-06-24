@@ -44,7 +44,7 @@ jobs:
               echo "Channel $CHANNEL_NAME exists in vendor portal app slug"
               echo "Channel_ID is: $CHANNEL_ID"
 
-              replicated channel rm $CHANNEL_ID
+              replicated channel rm $CHANNEL_IDs
             if [ $? -ne 0 ]; then
               echo ""
               echo "Results: Something went wrong; $CHANNEL_NAME exists but was not archived"
