@@ -43,7 +43,7 @@ jobs:
         CHANNEL_NAME=`replicated channel  ls | grep $BRANCH_NAME`
        
         if [ -n "$CHANNEL_NAME" ]; then
-              replicateds channel rm $(replicated channel  ls | grep $BRANCH_NAME | awk '{ print $1 }')
+              replicated channel rm $(replicated channel  ls | grep $BRANCH_NAME | awk '{ print $2 }')
             if [ $? -ne 0 ]; then
               echo ""
               echo "Results: Something went wrong; $CHANNEL_NAME exists but was not archived"
