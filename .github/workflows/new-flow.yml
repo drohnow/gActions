@@ -23,6 +23,7 @@ jobs:
     - name: archive-channel
       shell: bash
       run: |
+        set +e
         # Download / install replicated cli
         curl -s https://api.github.com/repos/replicatedhq/replicated/releases/latest \
         | grep "browser_download_url.*linux_amd64.tar.gz" \
