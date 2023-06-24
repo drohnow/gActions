@@ -36,10 +36,11 @@ jobs:
         # Assign branch name to variable
         BRANCH_NAME="${{ steps.get_branch.outputs.branch }}"
         echo "Branch name is: $BRANCH_NAME"
+        
+        # Archive channel
         CHANNEL_ID=`replicated channel ls | grep $BRANCH_NAME | awk '{ print $1 }'`
         echo "Channel_ID is: $CHANNEL_ID"
         
-        # Archive channel
         CHANNEL_NAME=`replicated channel ls | grep $BRANCH_NAME | awk '{ print $2 }'`
         echo "Channel_Name is: $CHANNEL_NAME"
        
