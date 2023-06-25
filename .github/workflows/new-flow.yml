@@ -28,28 +28,17 @@ jobs:
         # set variables
         BRANCH_NAME="${{ steps.get_branch.outputs.branch }}"
         echo "Branch name is: $BRANCH_NAME"
+        AUTH="Authorization: $REPLICATED_API_TOKEN"
 
-        CHANNEL_ID=`curl --request GET  --url 'https://api.replicated.com/vendor/v3/app/2QvaIsJs5IIA43vhEqrBfbqwbMf/channels?excludeDetail=true' --header 'Authorization: b68065ed1ec4303b40b27a12ff3676ea7040f18b59dacdbf2db9e094260546cb' --header 'accept: application/json' | jq -r --arg queryname "$BRANCH" '.channels[] | select(.channelSlug == $queryname).id'`
+
         APP_ID=2QvaIsJs5IIA43vhEqrBfbqwbMf
 
-        # Archive channel
-        if [ -n "$CHANNEL_ID" ]; then
-              echo "Channel $CHANNEL_NAME exists in vendor portal app slug"
-              echo "Channel_ID is: $CHANNEL_ID"
+        CHANNEL_ID=`curl --request GET  --url 'https://api.replicated.com/vendor/v3/app/2QvaIsJs5IIA43vhEqrBfbqwbMf/channels?excludeDetail=true' --header 'Authorization: b68065ed1ec4303b40b27a12ff3676ea7040f18b59dacdbf2db9e094260546cb' --header 'accept: application/json' | jq -r --arg queryname "flossy03" '.channels[] | select(.channelSlug == $queryname).id'`
 
-        curl --request DELETE --url https://api.replicated.com/vendor/v3/app/$APP_ID/channel/$CHANNEL_ID --header 'Authorization: b68065ed1ec4303b40b27a12ff3676ea7040f18b59dacdbf2db9e094260546cb'
 
-            if [ $? -ne 0 ]; then
-              echo ""
-              echo "Results: Something went wrong; $CHANNEL_NAME exists but was not archived"
-              else
-              echo ""
-              echo "Results: $BRANCH_NAME channel successfully archived"
-            fi
-        else
-          echo ""
-          echo "Results: $BRANCH_NAME channel does not exist in Replicated Vendor Portal app slug"
-        fi
+        CHANNEL_ID=`curl --request GET --url https://api.replicated.com/vendor/v3/app/"$APP_ID"/channels --header "$AUTH" --header 'accept: application/json'  | jq -r --arg queryname $BRANCH_NAME '.channels[] | select(.channelSlug == $queryname).id'`
+
+        echo "should be here: $CHANNEL_ID
 
 
 
