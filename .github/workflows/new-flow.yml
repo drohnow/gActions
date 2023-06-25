@@ -31,20 +31,16 @@ jobs:
         AUTH="Authorization: $REPLICATED_API_TOKEN"
 
 
-        APP_ID=2QvaIsJs5IIA43vhEqrBfbqwbMf
+        $REPLICATED_APP_ID=2QvaIsJs5IIA43vhEqrBfbqwbMf
 
-        CHANNEL_ID=`curl --request GET --url https://api.replicated.com/vendor/v3/app/"$APP_ID"/channels --header "$AUTH" --header 'accept: application/json'  | jq -r --arg queryname $BRANCH_NAME '.channels[] | select(.channelSlug == $queryname).id'`
-
-        echo "should be here: $CHANNEL_ID"
+        CHANNEL_ID=`curl --request GET --url https://api.replicated.com/vendor/v3/app/"$REPLICATED_APP_ID"/channels --header "$AUTH" --header 'accept: application/json'  | jq -r --arg queryname $BRANCH_NAME '.channels[] | select(.channelSlug == $queryname).id'`
 
         # Archive channel
         if [ -n "$CHANNEL_ID" ]; then
               echo "Channel $CHANNEL_NAME exists in vendor portal app slug"
               echo "Channel_ID is: $CHANNEL_ID"
 
-            curl --request DELETE --url https://api.replicated.com/vendor/v3/app/$APP_ID/channel/$CHANNEL_ID --header "$AUTH" 
-
-            
+            curl --request DELETE --url https://api.replicated.com/vendor/v3/app/"$REPLICATED_APP_ID"/channel/$CHANNEL_ID --header "$AUTH" 
 
             if [ $? -ne 0 ]; then
               echo ""
