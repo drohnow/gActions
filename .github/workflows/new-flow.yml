@@ -35,7 +35,7 @@ jobs:
 
         CHANNEL_ID=`curl --request GET --url https://api.replicated.com/vendor/v3/app/"$APP_ID"/channels --header "$AUTH" --header 'accept: application/json'  | jq -r --arg queryname $BRANCH_NAME '.channels[] | select(.channelSlug == $queryname).id'`
 
-        echo "should be here: $CHANNEL_ID
+        echo "should be here: $CHANNEL_ID"
 
         # Archive channel
         if [ -n "$CHANNEL_ID" ]; then
@@ -43,6 +43,8 @@ jobs:
               echo "Channel_ID is: $CHANNEL_ID"
 
             curl --request DELETE --url https://api.replicated.com/vendor/v3/app/$APP_ID/channel/$CHANNEL_ID --header "$AUTH" 
+
+            
 
             if [ $? -ne 0 ]; then
               echo ""
