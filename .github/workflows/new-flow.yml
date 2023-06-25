@@ -38,14 +38,14 @@ jobs:
               echo "Channel $CHANNEL_NAME exists in vendor portal app slug"
               echo "Channel_ID is: $CHANNEL_ID"
 
-            curl --request DELETE --url https://api.replicated.com/vendor/v3/app/"$REPLICATED_APP_ID"/channel/$CHANNEL_ID --header "$AUTH" 
+            RESPONSE=$(curl --request DELETE --url https://api.replicated.com/vendor/v3/app/"$REPLICATED_APP_ID"/channel/$CHANNEL_ID --header "$AUTH")
 
-            if [ $? -ne 0 ]; then
-              echo ""
-              echo "Results: Something went wrong; $CHANNEL_NAME exists but was not archived"
-              else
-              echo ""
-              echo "Results: $BRANCH_NAME channel successfully archived"
+            if [[ "$RESPONSE" -ne 200 ]]; then
+                echo ""
+                echo "Results: Something went wrong; $CHANNEL_NAME exists but was not archived"
+            else
+                echo ""
+                echo "Results: $BRANCH_NAME channel successfully archived"
             fi
         else
           echo ""
