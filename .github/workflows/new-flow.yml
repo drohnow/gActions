@@ -38,7 +38,7 @@ jobs:
               echo "Channel $CHANNEL_NAME exists in vendor portal app slug"
               echo "Channel_ID is: $CHANNEL_ID"
 
-            RESPONSE=$(curl --write-out %{http_code} --silent --request DELETE --url https://api.replicated.com/vendor/v3/app/"$REPLICATED_APP_ID"/channel/$CHANNEL_ID --header "$AUTH")
+            RESPONSE=$(curl --write-out %{http_code} --silent --request DELETE --url https://api.replicated.com/vendor/v3/app/"$REPLICATED_APP_ID"/channel/1$CHANNEL_ID --header "$AUTH")
 
             echo "response is - $RESPONSE"
 
