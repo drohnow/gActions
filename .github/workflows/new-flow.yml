@@ -24,7 +24,7 @@ jobs:
     - name: archive-channel
       shell: bash
       run: |
-        set +e
+        set +e  
 
         # set variables
         BRANCH_NAME="${{ steps.get_branch.outputs.branch }}"
@@ -40,7 +40,7 @@ jobs:
 
             RESPONSE=$(curl --request DELETE --url https://api.replicated.com/vendor/v3/app/"$REPLICATED_APP_ID"/1channel/$CHANNEL_ID --header "$AUTH")
 
-            if [[ "$RESPONSE" -ne 200" ]]; then
+            if [[ "$RESPONSE" -ne 200 ]]; then
                 echo ""
                 echo "Results: Something went wrong; $CHANNEL_NAME exists but was not archived"
             else
