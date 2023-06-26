@@ -1,0 +1,42 @@
+name: archive-vendor-port-channel-on-PR-close
+
+on:
+  pull_request:
+    types:
+      - closed
+
+env:
+  REPLICATED_API_TOKEN: ${{ secrets.REPLICATED_API_TOKEN }}
+  REPLICATED_APP: ${{ secrets.REPLICATED_APP }}
+  REPLICATED_APP_ID: ${{ secrets.REPLICATED_APP_ID }}
+  
+
+jobs: 
+  archive-vendor-channel:
+    runs-on: ubuntu-latest
+    steps:
+
+    - name: Get branch name
+      shell: bash
+      run: echo "branch=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}" >> $GITHUB_OUTPUT
+      id: get_branch
+      
+    - name: archive-channel
+      shell: bash
+      run: |
+
+        BRANCH_NAME="${{ steps.get_branch.outputs.branch }}"
+        echo "Branch name is: $BRANCH_NAME"
+        AUTH="Authorization: $REPLICATED_API_TOKEN"
+        #AUTH="Authorization: 7d864e295686eafe7c77b557269f38eae52df2bc4df3a0f185dd8fc9a48de111"
+
+        CHANNEL_ID=`curl --request GET --url https://api.replicated.com/vendor/v3/app/"$REPLICATED_APP_ID"/channels --header "$AUTH" --header 'accept: application/json'  | jq -r --arg queryname $BRANCH_NAME '.channels[] | select(.channelSlug == $queryname).id'`
+
+        CHANNEL_NAME=`curl --request GET --url https://api.replicated.com/vendor/v3/app/2QvaIsJs5IIA43vhEqrBfbqwbMf/channels --header 'Authorization: b68065ed1ec4303b40b27a12ff3676ea7040f18b59dacdbf2db9e094260546cb' --header 'accept: application/json' | jq -r --arg queryname $BRANCH_NAME '.channels[] | select(.channelSlug == $queryname).channelSlug'`
+
+        echo "channel name is -- $CHANNEL_NAME"
+
+        echo "channel ID is -- $CHANNEL_ID"
+
+        echo "Branch name is --  $BRANCH_NAME"
+
