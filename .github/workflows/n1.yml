@@ -33,11 +33,9 @@ jobs:
 
         CHANNEL_NAME=`curl --request GET --url https://api.replicated.com/vendor/v3/app/2QvaIsJs5IIA43vhEqrBfbqwbMf/channels --header 'Authorization: b68065ed1ec4303b40b27a12ff3676ea7040f18b59dacdbf2db9e094260546cb' --header 'accept: application/json' | jq -r --arg queryname $BRANCH_NAME '.channels[] | select(.channelSlug == $queryname).channelSlug'`
 
-        if [ -z $CHANNEL_NAME && $CHANNEL_NAME == $BRANCH_NAME ]; then
-          
+        if [ -z $CHANNEL_NAME ] && [ $CHANNEL_NAME == $BRANCH_NAME ]; then
           echo "Channel Name exists -- $CHANNEL_NAME"
         else
-
           echo "Channel DOES NOT exist"
         fi
 
