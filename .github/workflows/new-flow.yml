@@ -24,6 +24,7 @@ jobs:
     - name: archive-channel
       shell: bash
       run: |
+        archive-script
 
         # set variables
         BRANCH_NAME="${{ steps.get_branch.outputs.branch }}"
