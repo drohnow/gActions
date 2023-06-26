@@ -32,8 +32,7 @@ jobs:
 
         CHANNEL_ID=`curl --write-out %{http_code} --silent  --request GET --url https://api.replicated.com/vendor/v3/app/"$REPLICATED_APP_ID"/channels --header "$AUTH" --header 'accept: application/json'`
         
-        echo $CHANNEL_ID[0]
-        echo $CHANNEL_ID[1]
+        echo "status_code -- $CHANNEL_ID[1]"
 
 
 
