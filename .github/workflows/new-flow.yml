@@ -25,8 +25,8 @@ jobs:
       shell: bash
       run: |
 
-        REPLICATED_API_TOKEN:   7d864e295686eafe7c77b557269f38eae52df2bc4df3a0f185dd8fc9a48de111
-        echo "token -- $REPLICATED_API_TOKEN"
+        REPLICATED_API_TOKEN="7d864e295686eafe7c77b557269f38eae52df2bc4df3a0f185dd8fc9a48de111"
+        echo $REPLICATED_API_TOKEN
 
         BRANCH_NAME="${{ steps.get_branch.outputs.branch }}"
         echo "Branch name is: $BRANCH_NAME"
