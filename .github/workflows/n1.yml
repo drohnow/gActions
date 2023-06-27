@@ -29,9 +29,13 @@ jobs:
         echo "Branch name is: $BRANCH_NAME"
         AUTH="Authorization: $REPLICATED_API_TOKEN"
 
-        API_CHECK=`curl --request GET --url https://api.replicated.com/vendor/v3/app/2QvaIsJs5IIA43vhEqrBfbqwbMf/channels --header 'Authorization: e3beb38d236576afd11dca62d8018acb2879d245c7067e47db1947dac0778352' --header 'accept: application/json'`
+        API_CHECK=`curl --request GET --url https://api.replicated.com/vendor/v3/app/2QvaIsJs5IIA43vhEqrBfbqwbMf/channels --header 'Authorization: e3beb38d236576afd11dca62d8018acb2879d245c7067e47db1947dac0778311' --header 'accept: application/json'`
 
-        echo $API_CHECK
+        if [ -z $API_CHECK ]; then
+
+          echo "authentication failed...check if Replicated API token has expired in Vendor Portal"
+          exit 1
+        fi
         
 
         CHANNEL_NAME=`curl --request GET --url https://api.replicated.com/vendor/v3/app/2QvaIsJs5IIA43vhEqrBfbqwbMf/channels --header 'Authorization: b68065ed1ec4303b40b27a12ff3676ea7040f18b59dacdbf2db9e094260546cb' --header 'accept: application/json' | jq -r --arg queryname $BRANCH_NAME '.channels[] | select(.channelSlug == $queryname).channelSlug'`
