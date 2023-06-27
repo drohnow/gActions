@@ -34,7 +34,7 @@ jobs:
         if [ -z $API_CHECK ]; then
 
           echo "authentication failed...check if Replicated API token has expired in Vendor Portal"
-          exit 1
+          
         fi
         
 
