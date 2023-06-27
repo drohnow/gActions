@@ -29,7 +29,7 @@ jobs:
         echo "Branch name is: $BRANCH_NAME"
         AUTH="Authorization: $REPLICATED_API_TOKEN"
 
-        API_CHECK=`curl --request GET --url https://api.replicated.com/vendor/v3/app/"$REPLICATED_APP_ID"/channels --header "$AUTH2"  --header 'accept: application/json'`
+        API_CHECK=`curl --request GET --url https://api.replicated.com/vendor/v3/app/"$REPLICATED_APP_ID"/channels --header "$AUTH"  --header 'accept: application/json'`
         
         if [ -z $API_CHECK ]; then
           echo "authentication failed...check if Replicated API token has expired in Vendor Portal"
