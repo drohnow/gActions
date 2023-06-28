@@ -1,0 +1,20 @@
+name: Example of cURL action
+
+on: workflow_dispatch
+jobs:
+  test-curl-action:
+    name: "Perform REST API"
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Call API 1"
+        uses: indiesdev/curl@v1.1
+        id: api
+        with:
+          url: https://api.replicated.com/vendor/v3/app/2QvaIsJs5IIA43vhEqrBfbqwbMf/channels
+          method: "GET"
+          accept: 201
+          body: '{ "appSlug": "test" }'
+          bearer-token: ${{ secrets.REPLICATED_API_TOKEN }}
+          log-response: true
+      - name: "Use response"
+        run: echo ${{ steps.api.outputs.response }}
