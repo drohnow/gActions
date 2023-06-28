@@ -6,6 +6,7 @@ on: workflow_dispatch
 
 env:
   REPLICATED_APP_ID: ${{ secrets.REPLICATED_APP_ID }}
+  dagr: https://api.replicated.com/vendor/v3/app/2QvaIsJs5IIA43vhEqrBfbqwbMf/channels
 
 jobs:
   test-curl-action:
@@ -16,7 +17,7 @@ jobs:
         uses: indiesdev/curl@v1.1
         id: api
         with:
-          url: https://api.replicated.com/vendor/v3/app/"2QvaIsJs5IIA43vhEqrBfbqwbMf"/channels
+          url: $dagr
           method: "GET"
           accept: 201
           bearer-token: e3beb38d236576afd11dca62d8018acb2879d245c7067e47db1947dac0778352
