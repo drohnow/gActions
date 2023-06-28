@@ -14,9 +14,14 @@ env:
 jobs:
 
 
+
   curl:
     runs-on: ubuntu-latest
+    outputs:
+      channels: ${{ steps.get_channels.outputs.channels }}
+
     steps:
+
 
     - name: Get branch name
       shell: bash
@@ -30,14 +35,20 @@ jobs:
 
     - name: Get Channels
       uses: wei/curl@v1
+        
       with:
         args: "--request GET --url https://api.replicated.com/vendor/v3/app/$REPLICATED_APP_ID/channels --header 'Authorization: e3beb38d236576afd11dca62d8018acb2879d245c7067e47db1947dac0778352' --header 'accept: application/json'"
       id: get_channels
 
     - name: Get Channel ID
       env:
-        GetChannels: "${{ steps.get_channels.outputs.stdout }}"
+        GetChannels: "${{ steps.get_channels.outputs.channels }}"
       run: echo "channels are -- $GetChannels"
+
+
+    steps:
+      - id: step1
+        run: echo "test=hello" >> "$GITHUB_OUTPUT"
 
 
 
