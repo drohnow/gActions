@@ -36,7 +36,7 @@ jobs:
 
     - name: Get Channel ID
       env:
-        GetChannels: "${{ steps.get_channels.outputs.channels }}"
+        GetChannels: "${{ steps.get_channels.outputs }}"
       run: echo "channels are -- $GetChannels"
 
 
