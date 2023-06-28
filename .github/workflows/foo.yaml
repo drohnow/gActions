@@ -32,7 +32,7 @@ jobs:
     - name: print Branch Name
       env:
         BRANCH_NAME: "${{ steps.get_branch.outputs.branch }}"
-      run: $BRANCH_NAME
+      run: echo $BRANCH_NAME
 
 
 
