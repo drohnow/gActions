@@ -2,6 +2,14 @@ name: foo
 
 on: workflow_dispatch
 
+
+env:
+  REPLICATED_API_TOKEN: ${{ secrets.REPLICATED_API_TOKEN }}
+  REPLICATED_APP: ${{ secrets.REPLICATED_APP }}
+  REPLICATED_APP_ID: ${{ secrets.REPLICATED_APP_ID }}
+  CHANNEL_ID: 2Rq8jchA0GXXu10i19n8L74HMpq
+
+
 jobs:
 
 
@@ -17,7 +25,7 @@ jobs:
     - name: Delete Channel
       uses: wei/curl@v1
       with:
-        args: "--request DELETE --url https://api.replicated.com/vendor/v3/app/2QvaIsJs5IIA43vhEqrBfbqwbMf/channel/2Rq8ScC9suzsH5dYF4uWHsRbDD2 --header 'Authorization: e3beb38d236576afd11dca62d8018acb2879d245c7067e47db1947dac0778352'"
+        args: "--request DELETE --url https://api.replicated.com/vendor/v3/app/2QvaIsJs5IIA43vhEqrBfbqwbMf/channel/$CHANNEL_ID--header 'Authorization: e3beb38d236576afd11dca62d8018acb2879d245c7067e47db1947dac0778352'"
 
 
 
