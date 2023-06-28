@@ -1,5 +1,9 @@
 name: Example of cURL action
 
+env:
+  REPLICATED_APP_ID: ${{ secrets.REPLICATED_APP_ID }}
+
+
 on: workflow_dispatch
 jobs:
   test-curl-action:
