@@ -17,11 +17,8 @@ jobs:
 
   curl:
     runs-on: ubuntu-latest
-    outputs:
-      channels: ${{ steps.get_channels.outputs.channels }}
 
     steps:
-
 
     - name: Get branch name
       shell: bash
@@ -42,7 +39,7 @@ jobs:
 
     - name: Get Channel ID
       env:
-        GetChannels: "${{ steps.get_channels.outputs.channels }}"
+        GetChannels: "${{ steps.get_channels.outputs.var }}"
       run: echo "channels are -- $GetChannels"
 
 
