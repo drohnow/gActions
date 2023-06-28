@@ -1,10 +1,12 @@
 name: Example of cURL action
 
-env:
-  REPLICATED_APP_ID: ${{ secrets.REPLICATED_APP_ID }}
 
 
 on: workflow_dispatch
+
+env:
+  REPLICATED_APP_ID: ${{ secrets.REPLICATED_APP_ID }}
+
 jobs:
   test-curl-action:
     name: "Perform REST API"
