@@ -25,7 +25,7 @@ jobs:
     - name: Delete Channel
       uses: wei/curl@v1
       with:
-        args: "--request DELETE --url https://api.replicated.com/vendor/v3/app/2QvaIsJs5IIA43vhEqrBfbqwbMf/channel/$CHANNEL_ID--header 'Authorization: e3beb38d236576afd11dca62d8018acb2879d245c7067e47db1947dac0778352'"
+        args: "--request DELETE --url https://api.replicated.com/vendor/v3/app/2QvaIsJs5IIA43vhEqrBfbqwbMf/channel/$CHANNEL_ID --header 'Authorization: e3beb38d236576afd11dca62d8018acb2879d245c7067e47db1947dac0778352'"
 
 
 
