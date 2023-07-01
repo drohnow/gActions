@@ -1,10 +1,7 @@
 name: foo
 
-on:
-  pull_request:
-    types:
-      - closed
-      
+on: workflow_dispatch
+
 
 env:
   REPLICATED_API_TOKEN: ${{ secrets.REPLICATED_API_TOKEN }}
@@ -40,8 +37,9 @@ jobs:
 
     - name: Get Channel ID
       env:
-        GetChannels: "${{ steps.get_channels.outputs.var }}"
-      run: echo "channels are -- $GetChannels"
+        GetChannels: "${{ steps.get_channels.outputs.response }}"
+      run: echo 'channels are -- ${{ steps.get_channels.outputs.response }}.'
+
 
 
 
