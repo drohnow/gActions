@@ -5,17 +5,14 @@ on: workflow_dispatch
 
 jobs:
 
-  curl:
+  build: # job id
+    name: DemoJob # job name
     runs-on: ubuntu-latest
     steps:
-
-     - name: Make Request
-       id: myRequest
-       uses: fjogeleit/http-request-action@v1
-       with:
-        url: "http://yoursite.com/api"
-     - name: Show Response
-       run: |
-          echo ${{ steps.myRequest.outputs.response }}
-          echo ${{ steps.myRequest.outputs.headers }}
-          #echo ${{ fromJson(steps.myRequest.outputs.response).field_you_want_to_access }}
+      - name: Hello
+        id: hello # used below to refer to output from this step
+        uses: actions/hello-world-javascript-action@master
+        with: # specifies arguments to the action
+          who-to-greet: 'Mark Volkmann'
+      - name: Time
+        run: echo 'The time was ${{ steps.hello.outputs.time }}.'
