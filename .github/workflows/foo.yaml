@@ -42,7 +42,7 @@ jobs:
     - name: Get Channel ID
       env:
         GetChannels: "${{ steps.get_channels.outputs.stdout}}"
-      run: echo 'channels are -- ${{ steps.get_channels.outputs.stdout }}'
+      run: echo 'channels are -- ${{ steps.get_channels.outputs.response }}'
 
 
 
