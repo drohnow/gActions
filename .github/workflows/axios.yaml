@@ -24,4 +24,3 @@ jobs:
         run: echo ${{ steps.api.outputs.response }}
 
 
-curl --request GET --url https://api.replicated.com/vendor/v3/app/"$REPLICATED_APP_ID"/channels --header "$AUTH" --header 'accept: application/json'
