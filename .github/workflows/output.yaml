@@ -36,7 +36,7 @@ jobs:
 
     - name: Print channel
       #run: jq -r --arg queryname "dagr" '.channels[] | select(.channelSlug == $queryname).channelSlug' echo 'CHANNEL_NAME={}' >> $GITHUB_OUTPUT ';'
-      run: echo "${{ needs.get_channels.outputs.CHANNEL_NAME }}"
+      run: echo "${{ steps.get_channels.outputs.CHANNEL_NAME }}"  
          
 
 
