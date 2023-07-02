@@ -28,6 +28,9 @@ jobs:
         #echo "Output [$CHANNELS]"
         #echo "CHANNELS=$CHANNELS" >> $GITHUB_OUTPUT   
 
-    - name: Example output call between steps
-
-      run: echo ${{ steps.my_step.outputs.CHANNELS }}
+    - name: Get Channel
+      id: get_channel
+      env:
+        CHANNELS=${{ steps.my_step.outputs.CHANNELS }}
+      run: |
+        echo CHANNELS | jq -r --arg queryname "dagr" '.channels[] | select(.channelSlug == $queryname).channelSlug'
