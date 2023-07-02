@@ -14,6 +14,8 @@ jobs:
 
   do-stuff:
     runs-on: ubuntu-latest
+    outputs:
+      CHANNEL_NAME: ${{ steps.get_channels.outputs.CHANNEL_NAME}}
 
     steps:
 
@@ -23,14 +25,18 @@ jobs:
       id: get_branch
 
     - name: print Branch Name
-      env:
+      env:  
         BRANCH_NAME: "${{ steps.get_branch.outputs.branch }}"
       run: echo $BRANCH_NAME
 
     - name: Get Channels
       shell: bash
       id: get_channels
-      run: "curl --request GET --url https://api.replicated.com/vendor/v3/app/2QvaIsJs5IIA43vhEqrBfbqwbMf/channels --header 'Authorization: e3beb38d236576afd11dca62d8018acb2879d245c7067e47db1947dac0778352' --header 'accept: application/json'"      
+      run: "curl --request GET --url https://api.replicated.com/vendor/v3/app/2QvaIsJs5IIA43vhEqrBfbqwbMf/channels --header 'Authorization: e3beb38d236576afd11dca62d8018acb2879d245c7067e47db1947dac0778352' --header 'accept: application/json'"   
+
+    - name: Print channel
+      run: jq -r --arg queryname "dagr" '.channels[] | select(.channelSlug == $queryname).channelSlug' echo 'CHANNEL_NAME={}' >> $GITHUB_OUTPUT ';'
+         
 
 
 
