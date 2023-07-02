@@ -31,6 +31,6 @@ jobs:
     - name: Get Channel
       id: get_channel
       env:
-        CHANNELS=${{ steps.my_step.outputs.CHANNELS }}
+        CHANNELS: ${{ steps.my_step.outputs.CHANNELS }}
       run: |
         echo CHANNELS | jq -r --arg queryname "dagr" '.channels[] | select(.channelSlug == $queryname).channelSlug'
