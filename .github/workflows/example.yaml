@@ -23,10 +23,11 @@ jobs:
       id: "my_step"
       shell: bash
       run: |
-        my_var=`curl --request GET --url https://api.replicated.com/vendor/v3/app/2QvaIsJs5IIA43vhEqrBfbqwbMf/channels --header 'Authorization: e3beb38d236576afd11dca62d8018acb2879d245c7067e47db1947dac0778352' --header 'accept: application/json'`
+        CHANNELS=`curl --request GET --url https://api.replicated.com/vendor/v3/app/2QvaIsJs5IIA43vhEqrBfbqwbMf/channels --header 'Authorization: e3beb38d236576afd11dca62d8018acb2879d245c7067e47db1947dac0778352' --header 'accept: application/json'` >> $GITHUB_OUTPUT
 
-        echo "Output [$my_var]"
-        echo "my_var=$my_var" >> $GITHUB_OUTPUT   
+       # echo "Output [$my_var]"
+        #echo "my_var=$my_var" >> $GITHUB_OUTPUT   
 
     - name: Example output call between steps
-      run: echo "mystuff -- ${{ steps.my_step.outputs.my_var }}"
+
+      run: echo ${{ steps.my_step.outputs.my_var }}
