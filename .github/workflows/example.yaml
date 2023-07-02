@@ -23,10 +23,10 @@ jobs:
       id: "my_step"
       shell: bash
       run: |
-        CHANNELS=`curl --request GET --url https://api.replicated.com/vendor/v3/app/2QvaIsJs5IIA43vhEqrBfbqwbMf/channels --header 'Authorization: e3beb38d236576afd11dca62d8018acb2879d245c7067e47db1947dac0778352' --header 'accept: application/json'` >> $GITHUB_OUTPUT
+        CHANNELS=`curl --request GET --url https://api.replicated.com/vendor/v3/app/2QvaIsJs5IIA43vhEqrBfbqwbMf/channels --header 'Authorization: e3beb38d236576afd11dca62d8018acb2879d245c7067e47db1947dac0778352' --header 'accept: application/json'`
 
         #echo "Output [$CHANNELS]"
-        #echo "CHANNELS=$CHANNELS" >> $GITHUB_OUTPUT   
+        echo "CHANNELS=$CHANNELS" >> $GITHUB_OUTPUT   
 
     - name: Example output call between steps
 
