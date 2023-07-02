@@ -30,12 +30,3 @@ jobs:
 
     - name: Example output call between steps
       run: echo "Channels are ---- dagr ---  ${{ steps.my_step.outputs.my_var }}" 
-
-
-
-
-
-
-
-
-
