@@ -33,7 +33,6 @@ jobs:
         echo "Output [${{steps.my_step.outputs.my_var}}]" 
 
 
-#x`x`echo "TAG_NAME=$(cat projectFile | grep -Po '(?<=Version>).*(?=</Version>)')" >> $GITHUB_OUTPUT
 
 
 
