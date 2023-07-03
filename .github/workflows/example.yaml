@@ -33,7 +33,6 @@ jobs:
       env:
         CHANNELS: ${{ steps.my_step.outputs.CHANNELS }}
       run: |
-        echo "channels are --- ${{ steps.my_step.outputs.CHANNELS }}"
         CHANNEL=`jq -r --arg queryname 'dagr' '.channels[] | select(.channelSlug == $queryname).channelSlug' <<< $CHANNELS`
         
         
