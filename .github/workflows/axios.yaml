@@ -16,5 +16,7 @@ jobs:
           accept: 200, 201
           log-response: true
       - name: "Use response"
-        run: echo "here are the goods...${{ steps.api.outputs.response }}"
+        env:
+          stuff="${{ steps.api.outputs.response }}"
+        run: echo "here are the goods...$stuff"
 
