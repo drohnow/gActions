@@ -13,8 +13,8 @@ jobs:
         with:
           url: https://reqres.in/api/users
           method: "GET"
-          accept: 200, 200
+          accept: 200, 201
           log-response: true
       - name: "Use response"
-        run: echo ${{ steps.api.outputs.response }}
+        run: echo "here are the goods...${{ steps.api.outputs.response }}"
 
