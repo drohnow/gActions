@@ -33,7 +33,7 @@ jobs:
       env:
         CHANNELS: ${{ steps.my_step.outputs.CHANNELS }}
       run: |
-       CHANNEL=`jq -r --arg queryname 'dagr' '.channels[] | select(.channelSlug == $queryname).channelSlug' <<< $CHANNELS` >> $GITHUB_OUTPUT
+       CHANNEL=` $CHANNELS jq -r --arg queryname 'dagr' '.channels[] | select(.channelSlug == $queryname).channelSlug'` >> $GITHUB_OUTPUT
        echo $CHANNEL
        
         
