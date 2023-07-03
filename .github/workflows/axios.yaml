@@ -17,7 +17,7 @@ jobs:
         uses: indiesdev/curl@v1.1
         id: api
         with:
-          url: "--request GET --url https://api.replicated.com/vendor/v3/app/$REPLICATED_APP_ID/channels --header 'Authorization: e3beb38d236576afd11dca62d8018acb2879d245c7067e47db1947dac0778352' --header 'accept: application/json'"          
+          url: "https://api.replicated.com/vendor/v3/app/$REPLICATED_APP_ID/channels"
           method: "GET"
           accept: 200, 201
           bearer-token: ${{ secrets.bearer_token }}
