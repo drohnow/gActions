@@ -34,6 +34,7 @@ jobs:
         CHANNELS: ${{ steps.my_step.outputs.CHANNELS }}
       run: |
        echo "CHANNEL=`jq -r --arg queryname 'dagr' '.channels[] | select(.channelSlug == $queryname).channelSlug' <<< $CHANNELS`" >> $GITHUB_OUTPUT
+       echo $CHANNEL
        
         
         
