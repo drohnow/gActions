@@ -17,10 +17,10 @@ jobs:
         uses: indiesdev/curl@v1.1
         id: api
         with:
-          url: "https://api.replicated.com/vendor/v3/app/$REPLICATED_APP_ID/channels"
+          url: "https://api.replicated.com/vendor/v3/app/2QvaIsJs5IIA43vhEqrBfbqwbMf/channels"
           method: "GET"
           accept: 200, 201
-          bearer-token: ${{ secrets.bearer_token }}
+          bearer-token: ${{ secrets.REPLICATED_API_TOKEN }}
           log-response: true
       - name: "Use response"
         env:
