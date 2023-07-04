@@ -32,8 +32,8 @@ jobs:
         uses: sergeysova/jq-action@v2
         id: version
         env:
-          CHANNELS: ${{ toJson(steps.api.outputs.response) }}"
+          CHANNELS: ${{ steps.api.outputs.response }}"
         with:
-          cmd: echo $CHANNELS  | jq -r --arg queryname 'dagr117' '.data.channels[] | select(.channelSlug == $queryname).id'
+          cmd: echo $CHANNELS  | jq -r --arg queryname 'dagr117' 'data.channels[] | select(data.channelSlug == $queryname).id'
               
 
