@@ -34,5 +34,5 @@ jobs:
           CHANNELS: ${{ steps.api.outputs.response }}"
         shell: bash
         run:
-          jq -r --arg queryname 'unstable' '.data.channels[] | select(.channelSlug == $queryname).id' <<< $CHANNELS
+          jq -r --arg queryname 'unstable' '.data.channels[]' <<< $CHANNELS
 
