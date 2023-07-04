@@ -28,5 +28,5 @@ jobs:
       - name: "Use response"
         env:
           stuff: "${{ steps.api.outputs.response }}"
-        run: echo "here are the goods...$stuff"
+        run: echo "here are the goods...$stuff.data"
 
