@@ -29,9 +29,10 @@ jobs:
 
 
       - name: Extract version from package.json
-        uses: sergeysova/jq-action@v2
         id: version
         env:
           CHANNELS: ${{ steps.api.outputs.response }}"
-        with:
-          cmd: echo $CHANNELS  | jq -r --arg queryname 'dagr117' '.data.channels[] | select(.channelSlug == $queryname).id'
+        shell: bash
+        run:
+          echo $CHANNELS  | jq -r --arg queryname 'dagr117' '.data.channels[] | select(.channelSlug == $queryname).id'
+
