@@ -28,7 +28,6 @@ jobs:
           log-response: true
       - name: "Use response"
         env:
-          stuff: "${{ steps.api.outputs.status }}"
+          stuff: "${{ steps.api.outputs.data }}"
         run: echo "here are the goods...$stuff"
-
 
