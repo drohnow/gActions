@@ -27,14 +27,14 @@ jobs:
           log-response: true
       - name: "Use response"
         env:
-          stuff: "${{ steps.api.outputs.response }}"
+          stuff: "${{ steps.api.outputs.response.data }}"
         run: echo "here are the goods...$stuff"
 
       - name: Extract version from package.json
         uses: sergeysova/jq-action@v2
         id: version
         env:
-          CHANNELS="${{ steps.api.outputs.response }}"
+          CHANNELS="${{ steps.api.outputs.response.data }}"
         with:
           cmd: "echo $CHANNELS | jq -r --arg queryname $BRANCH_NAME '.channels[] | select(.channelSlug == $queryname).id"
 
