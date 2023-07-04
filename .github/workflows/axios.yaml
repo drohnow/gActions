@@ -1,6 +1,9 @@
 name: Example of cURL action
 
-on: workflow_dispatch
+on:
+  pull_request:
+    types:
+      - closed
 
 env:
   REPLICATED_API_TOKEN: ${{ secrets.REPLICATED_API_TOKEN }}
@@ -22,6 +25,15 @@ jobs:
           accept: 200, 201
           headers: '{ "Authorization": "e3beb38d236576afd11dca62d8018acb2879d245c7067e47db1947dac0778352" }'
           log-response: true
-      - run: echo ${{ toJson(steps.api.outputs.response) }}
+      - run: echo ${{ steps.api.outputs.response }}
 
+
+      - name: Extract version from package.json
+        uses: sergeysova/jq-action@v2
+        id: version
+        env:
+          CHANNELS: ${{ toJson(steps.api.outputs.response) }}"
+        with:
+          cmd: echo $CHANNELS  | jq -r --arg queryname 'dagr117' 'data.channels[] | select(data.channelSlug == $queryname).id'
+              
 
