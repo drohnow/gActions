@@ -24,10 +24,9 @@ jobs:
           method: "GET"
           accept: 200, 201
           headers: '{ "Authorization": "e3beb38d236576afd11dca62d8018acb2879d245c7067e47db1947dac0778352" }'
-          content-type: application/json
           log-response: true
       - name: "Use response"
         env:
-          stuff: "${{ steps.api.outputs.response.channels }}"
+          stuff: "${{ steps.api.outputs.response }}"
         run: echo "here are the goods...$stuff"
 
