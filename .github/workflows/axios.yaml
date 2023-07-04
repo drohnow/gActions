@@ -34,6 +34,6 @@ jobs:
         env:
           CHANNELS: ${{ toJson(steps.api.outputs.response) }}"
         with:
-          cmd: echo $CHANNELS  | jq -r --arg queryname 'dagr117' 'data.channels[] | select(data.channelSlug == $queryname).id'
+          cmd: echo $CHANNELS  | jq -r --arg queryname 'dagr117' '.data.channels[] | select(.data.channelSlug == $queryname).id'
               
 
