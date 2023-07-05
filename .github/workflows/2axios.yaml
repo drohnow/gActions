@@ -29,7 +29,8 @@ jobs  :
         shell: bash
         run: |
 
-          echo "{CHANNELS}={"hellow world">> "$GITHUB_ENV"
+         echo "CHANNELS=yellow" >> "$GITHUB_ENV"
+
         id: get_channels
 
 
