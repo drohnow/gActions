@@ -34,6 +34,6 @@ jobs:
           CHANNELS: ${{ steps.api.outputs.response }}"
         shell: bash
         run:
-          jq version
+          jq --version
           jq -r --arg queryname 'dagr100' '.data.channels[] | select(.channelSlug == $queryname).id' <<< $CHANNELS
 
