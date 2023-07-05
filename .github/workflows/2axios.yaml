@@ -8,8 +8,9 @@ env:
   REPLICATED_APP_ID: ${{ secrets.REPLICATED_APP_ID }}
 
 
+
 jobs  :
-  job-1:
+  Get-Branch-Info:
     runs-on: ubuntu-latest
 
     steps:
@@ -20,8 +21,12 @@ jobs  :
 
       - name: print Branch Name
         env:  
-          BRANCH_NAME: "${{ steps.get_branch.outputs.branch }}"
+          #BRANCH_NAME: "${{ steps.get_branch.outputs.branch }}"
+          BRANCH_NAME: "dagr100"
         run: echo $BRANCH_NAME
+
+
+    
         
 
 
