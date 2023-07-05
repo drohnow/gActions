@@ -28,8 +28,10 @@ jobs  :
       - name: Get Channels
         shell: bash
         run: |
-         channels=curl --request GET --url https://api.replicated.com/vendor/v3/app/2QvaIsJs5IIA43vhEqrBfbqwbMf/channels --header 'Authorization: e3beb38d236576afd11dca62d8018acb2879d245c7067e47db1947dac0778352' --header 'accept: application/json' >> $GITHUB_OUTPUT 
+
+          echo "{CHANNELS}={curl --request GET --url https://api.replicated.com/vendor/v3/app/2QvaIsJs5IIA43vhEqrBfbqwbMf/channels --header 'Authorization: e3beb38d236576afd11dca62d8018acb2879d245c7067e47db1947dac0778352' --header 'accept: application/json'}" >> "$GITHUB_ENV"
         id: get_channels
+
 
       - name: Echo Channels
         run: echo "channels are here -- [${{ steps.get_channels.outputs.CHANNELS }}]"
