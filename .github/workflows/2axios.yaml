@@ -25,6 +25,11 @@ jobs  :
           BRANCH_NAME: "dagr100"
         run: echo $BRANCH_NAME
 
+      - name: Get Channels
+        shell: bash
+        run: CHANNEL_NAME="curl --request GET --url https://api.replicated.com/vendor/v3/app/"$REPLICATED_APP_ID"/channels --header "$AUTH" --header 'accept: application/json'"
+        id: get_channels
+
 
     
         
