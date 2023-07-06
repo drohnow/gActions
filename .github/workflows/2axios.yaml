@@ -46,12 +46,12 @@ jobs  :
         shell: bash
         run:
           jq --version
-          jq -r --arg queryname 'dagr100' '.data.channels[] | select(.channelSlug == $queryname).id' <<< $CHANNELS
+          echo CHANNEL_ID=$(jq -r --arg queryname 'dagr100' '.data.channels[] | select(.channelSlug == $queryname).id') <<< $CHANNELS
 
       - name: Echo Channel ID
         env:
-          CHANNEL_ID: "${{ env.CHANNELS }}"
-        run: echo "channel id is\:\ $CHANNEL_ID"
+          CHANNEL_ID: "${{ env.CHANNEL_ID}}"
+        run: echo "channel id is -- $CHANNEL_ID"
 
     
         
