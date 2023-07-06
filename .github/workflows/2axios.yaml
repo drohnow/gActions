@@ -29,7 +29,7 @@ jobs  :
         shell: bash
         run: |
 
-         echo "CHANNELS=ls -al" >> "$GITHUB_ENV"
+         echo "CHANNELS=$(ls -al) >> "$GITHUB_ENV"
 
         id: get_channels
 
@@ -37,8 +37,6 @@ jobs  :
       - name: Echo Channels
         #run: echo "channels are here -- [${{ steps.get_channels.outputs.CHANNELS }}]"
         run: echo "${{ env.CHANNELS }}"
-
-
 
 
     
