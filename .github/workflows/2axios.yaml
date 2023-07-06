@@ -42,6 +42,7 @@ jobs  :
 
 
       - name: Get Channel ID
+    
         id: version
         env:
           CHANNELS: "${{ env.CHANNELS }}"
