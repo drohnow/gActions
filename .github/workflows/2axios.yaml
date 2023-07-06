@@ -35,8 +35,10 @@ jobs  :
 
 
       - name: Echo Channels
-        #run: echo "channels are here -- [${{ steps.get_channels.outputs.CHANNELS }}]"
-        run: echo "${{ env.CHANNELS }}"
+        env:
+          getChannels: "${{ env.CHANNELS }}"
+          
+        run: echo "here are my channels -- $getChannels"
 
 
     
