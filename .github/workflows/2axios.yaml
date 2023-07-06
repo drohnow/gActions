@@ -41,6 +41,16 @@ jobs  :
         run: echo "here are my channels -- $getChannels"
 
 
+      - name: Get Channel ID
+        id: version
+        env:
+          CHANNELS: "${{ env.CHANNELS }}"
+        shell: bash
+        run:
+          jq --version
+          jq -r --arg queryname 'dagr100' '.data.channels[] | select(.channelSlug == $queryname).id' <<< $CHANNELS
+
+
     
         
 
