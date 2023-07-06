@@ -45,7 +45,7 @@ jobs  :
       - name: Get Channel ID
         id: get_channel_id
         env:
-          CHANNELS: "${{ steps.api.outputs.response }}"
+          CHANNELS: "${{ steps.get_channels.outputs.response }}"
         shell: bash
         run: |
 
