@@ -31,11 +31,10 @@ jobs  :
         with:
           url: "https://api.replicated.com/vendor/v3/app/2QvaIsJs5IIA43vhEqrBfbqwbMf/channels"
           method: "GET"
-          accept: 200, 201
+          accept: 200
           headers: '{ "Authorization": "e3beb38d236576afd11dca62d8018acb2879d245c7067e47db1947dac0778352" }'
           log-response: true
       - run: echo ${{ steps.get_channels.outputs.response }}
-
 
       - name: Echo Channels
         env:
