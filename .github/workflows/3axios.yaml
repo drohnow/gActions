@@ -39,7 +39,7 @@ jobs  :
 
       - name: Echo Channels
         env:
-          getChannels: "${{ steps.api.outputs.response }}"
+          getChannels: "${{ steps.get_channels.outputs.response }}"
         run: echo "here are my channels -- $getChannels"
 
       - name: Get Channel ID
