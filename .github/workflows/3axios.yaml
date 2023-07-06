@@ -1,0 +1,71 @@
+name: 2axios
+
+on: workflow_dispatch
+
+env:
+  REPLICATED_API_TOKEN: ${{ secrets.REPLICATED_API_TOKEN }}
+  REPLICATED_APP: ${{ secrets.REPLICATED_APP }}
+  REPLICATED_APP_ID: ${{ secrets.REPLICATED_APP_ID }}
+
+
+
+jobs  :
+  Get-Branch-Info:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Get branch name
+        shell: bash
+        run: echo "branch=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}" >> $GITHUB_OUTPUT
+        id: get_branch
+
+      - name: print Branch Name
+        env:  
+          #BRANCH_NAME: "${{ steps.get_branch.outputs.branch }}"
+          BRANCH_NAME: "dagr100"
+        run: echo $BRANCH_NAME
+
+      - name: Get Channels
+        shell: bash
+        run: |
+
+         echo "CHANNELS=$(curl --request GET --url https://api.replicated.com/vendor/v3/app/2QvaIsJs5IIA43vhEqrBfbqwbMf/channels --header 'Authorization: e3beb38d236576afd11dca62d8018acb2879d245c7067e47db1947dac0778352' --header 'accept: application/json'})" >> "$GITHUB_ENV"
+
+        id: get_channels
+
+      - name: "Get Channels"
+        uses: indiesdev/curl@v1.1
+        id: api
+        with:
+          url: "https://api.replicated.com/vendor/v3/app/2QvaIsJs5IIA43vhEqrBfbqwbMf/channels"
+          method: "GET"
+          accept: 200, 201
+          headers: '{ "Authorization": "e3beb38d236576afd11dca62d8018acb2879d245c7067e47db1947dac0778352" }'
+          log-response: true
+      - run: echo ${{ steps.api.outputs.response }}
+
+
+      - name: Echo Channels
+        env:
+          getChannels: "${{ steps.api.outputs.response }}"
+        run: echo "here are my channels -- $getChannels"
+
+      - name: Get Channel ID
+        id: get_channel_id
+        env:
+          CHANNELS: "${{ steps.api.outputs.response }}"
+        shell: bash
+        run: |
+
+          echo "CHANNEL_ID=$(echo $CHANNELS | jq -r --arg queryname 'dagr100' '.data.channels[] | select(.channelSlug == $queryname).id')"  >>  "$GITHUB_ENV"
+
+      - name: Echo Channel ID
+        env:
+          CHANNEL_ID: "${{ env.CHANNEL_ID}}"
+        run: echo "channel id is -- $CHANNEL_ID"
+
+    
+        
+
+
+
