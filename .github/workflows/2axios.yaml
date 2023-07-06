@@ -46,7 +46,7 @@ jobs  :
         shell: bash
         run: |
 
-          echo "CHANNEL_ID=$(echo $CHANNELS | jq -r --arg queryname 'dagr100' '.data.channels[] | select(.channelSlug == $queryname).id')"  >>  "$GITHUB_ENV"
+          echo "CHANNEL_ID=$(echo $CHANNELS | jq -r --arg queryname 'dagr100' '.channels[] | select(.channelSlug == $queryname).id')"  >>  "$GITHUB_ENV"
 
       - name: Echo Channel ID
         env:
