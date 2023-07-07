@@ -63,6 +63,8 @@ jobs  :
         id: delete_channels
         env:
           CHANNEL_ID: ${{ steps.get_channel_id.outputs.value }}"
+          BRANCH_NAME: "${{ steps.get_branch.outputs.branch }}"
+
         with:
           url: "https://api.replicated.com/vendor/v3/app/2QvaIsJs5IIA43vhEqrBfbqwbMf/channel/$CHANNEL_ID"
           method: "DELETE"
