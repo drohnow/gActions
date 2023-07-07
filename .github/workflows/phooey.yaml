@@ -11,7 +11,7 @@ jobs:
         uses: sergeysova/jq-action@v2
         id: version
         with:
-          cmd: 'jq --version'
+          cmd: echo '{"fruit":{"name":"apple","color":"green","price":1.20}}' | jq '.'
 
 
       
