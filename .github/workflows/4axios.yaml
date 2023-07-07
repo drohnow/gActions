@@ -50,6 +50,8 @@ jobs  :
 
         env:
           CHANNELS: "${{ steps.get_channels.outputs.response }}"
+          BRANCH_NAME: "${{ steps.get_branch.outputs.branch }}"
+
         with:
           cmd: "jq -r --arg queryname $BRANCH_NAME '.data.channels[] | select(.channelSlug == $queryname).id' <<< $CHANNELS"
 
@@ -63,7 +65,6 @@ jobs  :
         id: delete_channels
         env:
           CHANNEL_ID: ${{ steps.get_channel_id.outputs.value }}"
-          BRANCH_NAME: "${{ steps.get_branch.outputs.branch }}"
 
         with:
           url: "https://api.replicated.com/vendor/v3/app/2QvaIsJs5IIA43vhEqrBfbqwbMf/channel/$CHANNEL_ID"
