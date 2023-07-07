@@ -44,12 +44,14 @@ jobs  :
       - name: Extract version from package.json
         uses: sergeysova/jq-action@v2
         id: version
+        env:
+          CHANNELS: "${{ steps.get_channels.outputs.response }}"
         with:
           cmd: "jq -r --arg queryname 'dagr100' '.data.channels[] | select(.channelSlug == $queryname).id' <<< $CHANNELS"
 
       - name: Echo Channel ID
         env:
-          CHANNEL_ID: "${{ env.CHANNEL_ID}}"
+          CHANNEL_ID: ${{ steps.version.outputs.value }}"
         run: echo "channel id is -- $CHANNEL_ID"
 
     
