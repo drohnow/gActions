@@ -41,9 +41,10 @@ jobs  :
           getChannels: "${{ steps.get_channels.outputs.response }}"
         run: echo "here are my channels -- $getChannels"
 
-      - name: Extract version from package.json
+      - name: Get Channel ID
         uses: sergeysova/jq-action@v2
-        id: version
+        id: get_channel_id
+
         env:
           CHANNELS: "${{ steps.get_channels.outputs.response }}"
         with:
@@ -51,7 +52,7 @@ jobs  :
 
       - name: Echo Channel ID
         env:
-          CHANNEL_ID: ${{ steps.version.outputs.value }}"
+          CHANNEL_ID: ${{ steps.get_channel_id.outputs.value }}"
         run: echo "channel id is -- $CHANNEL_ID"
 
     
