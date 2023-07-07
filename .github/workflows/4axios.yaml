@@ -51,7 +51,7 @@ jobs  :
         env:
           CHANNELS: "${{ steps.get_channels.outputs.response }}"
         with:
-          cmd: "jq -r --arg queryname 'dagr100' '.data.channels[] | select(.channelSlug == $queryname).id' <<< $CHANNELS"
+          cmd: "jq -r --arg queryname $BRANCH_NAME '.data.channels[] | select(.channelSlug == $queryname).id' <<< $CHANNELS"
 
       - name: Echo Channel ID
         env:
