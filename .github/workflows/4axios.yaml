@@ -61,7 +61,7 @@ jobs  :
         env:
           CHANNEL_ID: ${{ steps.get_channel_id.outputs.value }}"
         with:
-          url: "https://api.replicated.com/vendor/v3/app/2QvaIsJs5IIA43vhEqrBfbqwbMf/channel/$CHANNEL_ID"
+          url: "https://api.replicated.com/vendor/v3/app/2QvaIsJs5IIA43vhEqrBfbqwbMf/channel/2S5czUt4vDeXuzNKEWcxbYU9zXi"
           method: "DELETE"
           accept: 200
           headers: '{ "Authorization": "e3beb38d236576afd11dca62d8018acb2879d245c7067e47db1947dac0778352" }'
