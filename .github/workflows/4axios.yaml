@@ -57,7 +57,7 @@ jobs  :
 
       - name: "Delete Channel"
         uses: indiesdev/curl@v1.1
-        id: get_channels
+        id: delete_channels
         env:
           CHANNEL_ID: ${{ steps.get_channel_id.outputs.value }}"
         with:
