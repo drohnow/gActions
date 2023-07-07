@@ -22,7 +22,7 @@ jobs  :
       - name: print Branch Name
         env:  
           #BRANCH_NAME: "${{ steps.get_branch.outputs.branch }}"
-          BRANCH_NAME: "dagr100"
+          BRANCH_NAME: "dagr"
         run: echo $BRANCH_NAME
 
       - name: "Get Channels"
