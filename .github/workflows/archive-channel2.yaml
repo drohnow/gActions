@@ -1,0 +1,18 @@
+name: replicated archive-channel
+
+on: workflow_dispatch
+
+jobs:
+
+  cleanup-channel:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Archive Replicated Channel
+        uses: replicatedhq/compatibility-actions/archive-channel@v0
+        with:
+          app-slug: ${{ secrets.REPLICATED_APP }}
+          api-token: ${{ secrets.REPLICATED_API_TOKEN }}
+          channel-slug: "test-release11-55242324941-kind-v1.25.3"
+          
