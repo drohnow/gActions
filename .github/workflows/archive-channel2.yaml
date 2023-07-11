@@ -14,5 +14,5 @@ jobs:
         with:
           app-slug: ${{ secrets.REPLICATED_APP }}
           api-token: ${{ secrets.REPLICATED_API_TOKEN }}
-          channel-slug: "test-release11-55242324941-kind-v1.25.3"
+          channel-slug: "test-channel254"
           
