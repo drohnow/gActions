@@ -19,13 +19,11 @@ jobs:
       - uses: actions/checkout@v3
 
       - name: Archive Replicated Channel
-        env:
-          BRANCH_NAME: "${{ steps.get_branch.outputs.branch }}"
         uses: replicatedhq/compatibility-actions/archive-channel@v0
         with:
           app-slug: ${{ secrets.REPLICATED_APP }}
           api-token: ${{ secrets.REPLICATED_API_TOKEN }}
-          channel-slug: $BRANCH_NAME
+          channel-slug: "${{ steps.get_branch.outputs.branch }}"
           
 
 
