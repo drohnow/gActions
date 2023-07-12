@@ -1,18 +1,32 @@
-name: replicated archive-channel
+name: archive-channel-on-PR-closed
 
-on: workflow_dispatch
+on:
+  pull_request:
+    types:
+      - closed
 
 jobs:
 
   cleanup-channel:
     runs-on: ubuntu-22.04
     steps:
+
+      - name: Get branch name
+        shell: bash
+        run: echo "branch=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}" >> $GITHUB_OUTPUT
+        id: get_branch
+
       - uses: actions/checkout@v3
 
       - name: Archive Replicated Channel
+        env:
+          BRANCH_NAME: "${{ steps.get_branch.outputs.branch }}"
         uses: replicatedhq/compatibility-actions/archive-channel@v0
         with:
           app-slug: ${{ secrets.REPLICATED_APP }}
           api-token: ${{ secrets.REPLICATED_API_TOKEN }}
-          channel-slug: "test-channel254"
+          channel-slug: $BRANCH_NAME
+          
+
+
           
