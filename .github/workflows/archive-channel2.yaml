@@ -7,7 +7,7 @@ on:
 
 jobs:
 
-  cleanup-channel:
+  archive-channel:
     runs-on: ubuntu-22.04
     steps:
 
